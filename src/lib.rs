@@ -83,7 +83,7 @@
 //! - [`BTreeSet`](::std::collections::BTreeSet)
 //! - [`HashSet`](::std::collections::HashSet)
 //!
-//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Seq0`] and [`Seq1Plus`].
+//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Seq0`](crate::Seq0) and [`Seq1Plus`](crate::Seq1Plus).
 //!
 //! **Tips:**
 //!

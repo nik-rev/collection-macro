@@ -85,7 +85,7 @@ let seq: NonEmpty<Vec<_>> = seq![];
 - `BTreeSet`
 - `HashSet`
 
-But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Seq0`] and [`Seq1Plus`].
+But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Seq0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq0.html) and [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html).
 
 **Tips:**
 
