@@ -88,13 +88,13 @@ macro_rules! seq {
     ($value:expr; $amount:expr) => { <_ as $crate::Seq<_>>::from_n($value, $amount) };
 }
 
-/// Sequence that can be empty
+/// Sequence that can be empty. Unlocks: `seq![]`
 pub trait Seq0<T> {
     /// Constructor for an empty collection.
     fn empty() -> Self;
 }
 
-/// Sequence that can have 1 or more elements
+/// Sequence that can have 1 or more elements. Unlocks: `seq![1]`
 pub trait Seq1Plus<T> {
     /// Constructor with capacity, taking the first element.
     /// Capacity may be ignored for fixed-size collections.
@@ -104,9 +104,11 @@ pub trait Seq1Plus<T> {
     fn add(&mut self, value: T);
 }
 
-/// Sequence. Allows using the `seq![value; amount]` syntax
+/// Sequence. Unlocks: `seq![value; amount]`
 ///
-/// Blanket implemented for types that implement both [`Seq0`] and [`Seq1Plus`]
+///
+/// Do not implement this trait. Instead, implement both [`Seq0`] and [`Seq1Plus`]
+/// to get `Seq` for free
 pub trait Seq<T> {
     /// Create sequence with the specified number of elements
     fn from_n(value: T, n: usize) -> Self;
@@ -126,13 +128,13 @@ impl<T: Clone, S: Seq0<T> + Seq1Plus<T>> Seq<T> for S {
     }
 }
 
-/// Map that can be empty
+/// Map that can be empty. Unlocks: `map! {}`
 pub trait Map0<K, V> {
     /// Constructor with capacity for non-empty or empty use.
     fn empty() -> Self;
 }
 
-/// Map that can have 1 or more elements
+/// Map that can have 1 or more elements. Unlocks: `map! { a => b }`
 pub trait Map1Plus<K, V> {
     /// Constructor with capacity, taking the first key-value pair.
     fn with_first_and_capacity(first_key: K, first_value: V, capacity: usize) -> Self;
