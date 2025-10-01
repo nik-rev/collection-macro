@@ -5,6 +5,9 @@ edition = "2021"
 rust-version = "1.60"
 authors = ["Nik Revenco <pm@nikrev.com>"]
 description = "General-purpose `seq![]` and `map! {}` collection macros"
+repository = "https://github.com/nik-rev/seq-map"
+license = "MIT OR Apache-2.0"
+keywords = ["macros", "collection"]
 
 [dev-dependencies]
 mitsein = "0.7"
