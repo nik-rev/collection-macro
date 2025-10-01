@@ -3,4 +3,10 @@ name = "collection_macros"
 version = "0.1.0"
 edition = "2024"
 
+[features]
+mitsein = ["dep:mitsein"]
+indexmap = ["dep:indexmap", "mitsein?/indexmap"]
+
 [dependencies]
+mitsein = { version = "0.7", optional = true }
+indexmap = { version = "2.11", optional = true }
