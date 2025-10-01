@@ -1,4 +1,4 @@
-# `seq_map`
+# `collection_macro`
 
 <!-- cargo-rdme start -->
 
