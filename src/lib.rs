@@ -16,6 +16,7 @@
 //! # Usage
 //!
 //! These macros rely on type inference to determine the collection that they create.
+//!
 //! The real power of these macros lies in the fact that work with absolutely any collection type, even collections from other crates.
 //!
 //! ## [`seq![]`](seq)
