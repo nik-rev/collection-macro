@@ -3,13 +3,6 @@
 version = 4
 
 [[package]]
-name = "collection_macro"
-version = "0.1.0"
-dependencies = [
- "mitsein",
-]
-
-[[package]]
 name = "dyn-clone"
 version = "1.0.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -131,6 +124,13 @@ dependencies = [
  "ref-cast",
  "serde",
  "serde_json",
+]
+
+[[package]]
+name = "seq_map"
+version = "0.1.0"
+dependencies = [
+ "mitsein",
 ]
 
 [[package]]

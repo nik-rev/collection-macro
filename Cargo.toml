@@ -1,8 +1,9 @@
 [package]
-name = "collection_macro"
+name = "seq_map"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.60"
+authors = ["Nik Revenco <pm@nikrev.com>"]
 description = "General-purpose `seq![]` and `map! {}` collection macros"
 
 [dev-dependencies]
