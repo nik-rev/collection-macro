@@ -95,7 +95,7 @@ But you can use it with *any* struct, even the ones from external crates by impl
 **Tips:**
 
 - For a sequence of 0 or more elements can such as [`Vec<T>`](https://doc.rust-lang.org/stable/alloc/vec/struct.Vec.html), implement both [`Seq0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq0.html) and [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html)
-- If your sequence is non-empty like `NonEmpty<Vec<T>>`, implement just [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html) - then `seq![]` will be a compile error
+- If your sequence is non-empty like [`NonEmpty<Vec<T>>`](https://docs.rs/mitsein/latest/mitsein/vec1/type.Vec1.html), implement just [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html) - then `seq![]` will be a compile error
 
 ### [`map! {}`](https://docs.rs/collection_macro/latest/collection_macro/macro.map.html)
 
@@ -112,8 +112,8 @@ assert_eq!(seq, HashMap::from([('A', 0x41), ('b', 0x62), ('!', 0x21)]));
 
 **Traits:**
 
-- If your type implements [`Map0<K, V>`], then it can be used with `map! {}` syntax
-- If your type implements [`Map1Plus<K, V>`], then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
+- If your type implements [`Map0<K, V>`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map0.html), then it can be used with `map! {}` syntax
+- If your type implements [`Map1Plus<K, V>`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html), then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
 
 `map!` can be used with these standard library types by default:
 

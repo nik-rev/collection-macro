@@ -88,7 +88,7 @@
 //! **Tips:**
 //!
 //! - For a sequence of 0 or more elements can such as [`Vec<T>`](Vec), implement both [`Seq0`](Seq0) and [`Seq1Plus`](Seq1Plus)
-//! - If your sequence is non-empty like `NonEmpty<Vec<T>>`, implement just [`Seq1Plus`](Seq1Plus) - then `seq![]` will be a compile error
+//! - If your sequence is non-empty like [`NonEmpty<Vec<T>>`](https://docs.rs/mitsein/latest/mitsein/vec1/type.Vec1.html), implement just [`Seq1Plus`](Seq1Plus) - then `seq![]` will be a compile error
 //!
 //! ## [`map! {}`](map)
 //!
@@ -107,8 +107,8 @@
 //!
 //! **Traits:**
 //!
-//! - If your type implements [`Map0<K, V>`], then it can be used with `map! {}` syntax
-//! - If your type implements [`Map1Plus<K, V>`], then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
+//! - If your type implements [`Map0<K, V>`](Map0), then it can be used with `map! {}` syntax
+//! - If your type implements [`Map1Plus<K, V>`](Map1Plus), then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
 //!
 //! `map!` can be used with these standard library types by default:
 //!
