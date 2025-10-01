@@ -115,12 +115,12 @@
 //! - [`BTreeMap`](BTreeMap)
 //! - [`BTreeSet`](BTreeSet)
 //!
-//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`] and [`Map1Plus`].
+//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`](Map0) and [`Map1Plus`](Map1Plus).
 //!
 //! **Tips:**
 //!
-//! - For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](HashMap), implement both [`Map0`] and [`Map1Plus`]
-//! - If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`] - then `map! {}` will be a compile error
+//! - For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](HashMap), implement both [`Map0`](Map0) and [`Map1Plus`](Map1Plus)
+//! - If your map is non-empty like [`NonEmpty<BTreeMap<K, V>>`](https://docs.rs/mitsein/latest/mitsein/btree_map1/type.BTreeMap1.html), implement just [`Map1Plus`](Map1Plus) - then `map! {}` will be a compile error
 
 use core::cmp::Ord;
 use core::hash::{BuildHasher, Hash};

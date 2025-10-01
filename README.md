@@ -120,11 +120,11 @@ assert_eq!(seq, HashMap::from([('A', 0x41), ('b', 0x62), ('!', 0x21)]));
 - [`BTreeMap`](https://doc.rust-lang.org/stable/alloc/collections/btree/map/struct.BTreeMap.html)
 - [`BTreeSet`](https://doc.rust-lang.org/stable/alloc/collections/btree/set/struct.BTreeSet.html)
 
-But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`] and [`Map1Plus`].
+But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map0.html) and [`Map1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html).
 
 **Tips:**
 
-- For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](https://doc.rust-lang.org/stable/std/collections/hash/map/struct.HashMap.html), implement both [`Map0`] and [`Map1Plus`]
-- If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`] - then `map! {}` will be a compile error
+- For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](https://doc.rust-lang.org/stable/std/collections/hash/map/struct.HashMap.html), implement both [`Map0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map0.html) and [`Map1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html)
+- If your map is non-empty like [`NonEmpty<BTreeMap<K, V>>`](https://docs.rs/mitsein/latest/mitsein/btree_map1/type.BTreeMap1.html), implement just [`Map1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html) - then `map! {}` will be a compile error
 
 <!-- cargo-rdme end -->
