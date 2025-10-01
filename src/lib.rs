@@ -5,7 +5,7 @@
 //! collection_macro = "0.1"
 //! ```
 //!
-//! This crate also shows off how to bypass the Orphan Rule to create incredibly versatile macros.
+//! We also show off how to bypass the [Orphan Rule](https://doc.rust-lang.org/reference/items/implementations.html#orphan-rules) to create incredibly versatile macros.
 //!
 //! # Usage
 //!
@@ -24,12 +24,15 @@
 //! You can create non-empty sequences, like ones from the [`mitsein`](https://docs.rs/mitsein/latest/mitsein/) crate:
 //!
 //! ```rust
+//! extern crate mitsein;
+//!
 //! use collection_macro::{seq, Seq1Plus};
 //! use mitsein::NonEmpty;
 //!
 //! struct BypassOrphanRule;
 //!
-//! // we usually can't implement external trait `Seq1Plus` for external struct `NonEmpty`,
+//! // we usually can't implement external trait `Seq1Plus`
+//! // for external struct `NonEmpty`,
 //! // but because `BypassOrphanRule` is a local type, and it is
 //! // inferred in the `seq!` macro, this works!
 //! impl<T> Seq1Plus<BypassOrphanRule, T> for NonEmpty<Vec<T>> {
@@ -77,7 +80,7 @@
 //!
 //! ## [`map! {}`](map)
 //!
-//! Takes a list of `key => value` pairs, and creates a map like [`HashMap<K, V>`](std::collections::HashMap) or [`BTreeMap<K, V>`](std::collections::BTreeMap):
+//! Takes a list of `key => value` pairs, and creates a map like [`HashMap<K, V>`] or [`BTreeMap<K, V>`]:
 //!
 //! ```rust
 //! # use collection_macro::map;
@@ -97,8 +100,8 @@
 //!
 //! `map!` can be used with these standard library types by default:
 //!
-//! - [`BTreeMap`](std::collections::BTreeMap)
-//! - [`BTreeSet`](std::collections::BTreeSet)
+//! - [`BTreeMap`]
+//! - [`BTreeSet`]
 //!
 //! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`] and [`Map1Plus`].
 

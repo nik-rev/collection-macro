@@ -5,10 +5,5 @@ edition = "2021"
 rust-version = "1.60"
 description = "General-purpose `seq![]` and `map! {}` collection macros"
 
-[features]
-mitsein = ["dep:mitsein"]
-indexmap = ["dep:indexmap", "mitsein?/indexmap"]
-
-[dependencies]
-mitsein = { version = "0.7", optional = true }
-indexmap = { version = "2.11", optional = true }
+[dev-dependencies]
+mitsein = "0.7"
