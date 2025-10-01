@@ -1,14 +1,14 @@
-//! [![crates.io](https://img.shields.io/crates/v/seq_map?style=flat-square&logo=rust)](https://crates.io/crates/seq_map)
-//! [![docs.rs](https://img.shields.io/badge/docs.rs-seq_map-blue?style=flat-square&logo=docs.rs)](https://docs.rs/seq_map)
+//! [![crates.io](https://img.shields.io/crates/v/collection_macro?style=flat-square&logo=rust)](https://crates.io/crates/collection_macro)
+//! [![docs.rs](https://img.shields.io/badge/docs.rs-collection_macro-blue?style=flat-square&logo=docs.rs)](https://docs.rs/collection_macro)
 //! ![license](https://img.shields.io/badge/license-Apache--2.0_OR_MIT-blue?style=flat-square)
 //! ![msrv](https://img.shields.io/badge/msrv-1.60-blue?style=flat-square&logo=rust)
-//! [![github](https://img.shields.io/github/stars/nik-rev/seq-map)](https://github.com/nik-rev/seq-map)
+//! [![github](https://img.shields.io/github/stars/nik-rev/collection-macro)](https://github.com/nik-rev/collection-macro)
 //!
-//! This crate provides the general-purpose [`seq![]`](seq) and [`map! {}`](map) macros.
+//! This crate provides the general-purpose [`seq![]`](crate::seq) and [`map! {}`](crate::map) macros.
 //!
 //! ```toml
 //! [dependencies]
-//! seq_map = "0.1"
+//! collection_macro = "0.1"
 //! ```
 //!
 //! We also show off how to bypass the [Orphan Rule](https://doc.rust-lang.org/reference/items/implementations.html#orphan-rules) to create incredibly versatile macros.
@@ -19,19 +19,19 @@
 //!
 //! The real power of these macros lies in the fact that work with absolutely any collection type, even collections from other crates.
 //!
-//! ## [`seq![]`](seq)
+//! ## [`seq![]`](crate::seq)
 //!
-//! Takes a list of expressions, and creates a sequence like [`Vec<T>`] or [`HashSet<T>`](std::collections::HashSet):
+//! Takes a list of expressions, and creates a sequence like [`Vec<T>`](::std::vec::Vec) or [`HashSet<T>`](::std::collections::HashSet):
 //!
 //! ```rust
-//! # use seq_map::seq;
+//! # use collection_macro::seq;
 //! let seq: Vec<_> = seq![1, 2, 3];
 //! ```
 //!
 //! You can use the array syntax `seq![expr; amount]`:
 //!
 //! ```rust
-//! # use seq_map::seq;
+//! # use collection_macro::seq;
 //! let seq: Vec<_> = seq![0; 10];
 //! assert_eq!(seq, vec![0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 //! ```
@@ -41,7 +41,7 @@
 //! ```rust
 //! extern crate mitsein;
 //!
-//! use seq_map::{seq, Seq1Plus};
+//! use collection_macro::{seq, Seq1Plus};
 //! use mitsein::NonEmpty;
 //!
 //! struct BypassOrphanRule;
@@ -72,30 +72,30 @@
 //!
 //! **Traits:**
 //!
-//! - If your type implements [`Seq0<T>`], then it can be used with `seq![]` syntax
-//! - If your type implements [`Seq1Plus<T>`], then it can be used with 1+ argument to: `seq![1, 2]`
-//! - If your type implements **both** [`Seq0<T>`] and [`Seq1Plus<T>`] then you can use the array syntax: `seq![0; 10]`
+//! - If your type implements [`Seq0<T>`](crate::Seq0), then it can be used with `seq![]` syntax
+//! - If your type implements [`Seq1Plus<T>`](crate::Seq1Plus), then it can be used with 1+ argument to: `seq![1, 2]`
+//! - If your type implements **both** [`Seq0<T>`](crate::Seq0) and [`Seq1Plus<T>`](crate::Seq1Plus) then you can use the array syntax: `seq![0; 10]`
 //!
 //! `seq!` can be used with these standard library types by default:
 //!
-//! - [`VecDeque`]
-//! - [`Vec`]
-//! - [`BTreeSet`]
-//! - [`HashSet`]
+//! - [`VecDeque`](::std::collections::VecDeque)
+//! - [`Vec`](::std::vec::Vec)
+//! - [`BTreeSet`](::std::collections::BTreeSet)
+//! - [`HashSet`](::std::collections::HashSet)
 //!
 //! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Seq0`] and [`Seq1Plus`].
 //!
 //! **Tips:**
 //!
-//! - For a sequence of 0 or more elements can such as [`Vec<T>`], implement both [`Seq0`] and [`Seq1Plus`]
-//! - If your sequence is non-empty like `NonEmpty<Vec<T>>`, implement just [`Seq1Plus`] - then `seq![]` will be a compile error
+//! - For a sequence of 0 or more elements can such as [`Vec<T>`](::std::vec::Vec), implement both [`Seq0`](crate::Seq0) and [`Seq1Plus`](crate::Seq1Plus)
+//! - If your sequence is non-empty like `NonEmpty<Vec<T>>`, implement just [`Seq1Plus`](crate::Seq1Plus) - then `seq![]` will be a compile error
 //!
-//! ## [`map! {}`](map)
+//! ## [`map! {}`](crate::map)
 //!
 //! Takes a list of `key => value` pairs, and creates a map like [`HashMap<K, V>`] or [`BTreeMap<K, V>`]:
 //!
 //! ```rust
-//! # use seq_map::map;
+//! # use collection_macro::map;
 //! # use std::collections::HashMap;
 //! let seq: HashMap<_, _> = map! {
 //!     'A' => 0x41,
@@ -107,20 +107,20 @@
 //!
 //! **Traits:**
 //!
-//! - If your type implements [`Map0<K, V>`], then it can be used with `map! {}` syntax
-//! - If your type implements [`Map1Plus<K, V>`], then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
+//! - If your type implements [`Map0<K, V>`](crate::Map0), then it can be used with `map! {}` syntax
+//! - If your type implements [`Map1Plus<K, V>`](crate::Map1Plus), then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
 //!
 //! `map!` can be used with these standard library types by default:
 //!
 //! - [`BTreeMap`]
 //! - [`BTreeSet`]
 //!
-//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`] and [`Map1Plus`].
+//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`](crate::Map0) and [`Map1Plus`](crate::Map1Plus).
 //!
 //! **Tips:**
 //!
-//! - For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`], implement both [`Map0`] and [`Map1Plus`]
-//! - If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`] - then `map! {}` will be a compile error
+//! - For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](::std::collections::HashMap), implement both [`Map0`](crate::Map0) and [`Map1Plus`](crate::Map1Plus)
+//! - If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`](crate::Map1Plus) - then `map! {}` will be a compile error
 
 use core::cmp::Ord;
 use core::hash::{BuildHasher, Hash};
@@ -129,7 +129,7 @@ use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet, VecDeque};
 /// General-purpose macro for creating a map with keys pointing to values
 ///
 /// ```rust
-/// # use seq_map::map;
+/// # use collection_macro::map;
 /// let map: std::collections::HashMap<_, _> = map! {
 ///     1 => 2,
 ///     2 => 3,
@@ -161,7 +161,7 @@ macro_rules! map {
 /// General-purpose macro for creating a sequence of items
 ///
 /// ```rust
-/// # use seq_map::seq;
+/// # use collection_macro::seq;
 /// let seq: Vec<_> = seq![1, 2, 3];
 /// assert_eq!(seq, vec![1, 2, 3]);
 /// ```
