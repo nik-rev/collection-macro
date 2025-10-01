@@ -25,7 +25,7 @@ The real power of these macros lies in the fact that work with absolutely any co
 
 ### [`seq![]`](https://docs.rs/collection_macro/latest/collection_macro/macro.seq.html)
 
-Takes a list of expressions, and creates a sequence like `Vec<T>` or `HashSet<T>`:
+Takes a list of expressions, and creates a sequence like [`Vec<T>`](https://doc.rust-lang.org/stable/alloc/vec/struct.Vec.html) or [`HashSet<T>`](https://doc.rust-lang.org/stable/std/collections/hash/set/struct.HashSet.html):
 
 ```rust
 let seq: Vec<_> = seq![1, 2, 3];
@@ -80,21 +80,21 @@ let seq: NonEmpty<Vec<_>> = seq![];
 
 `seq!` can be used with these standard library types by default:
 
-- `VecDeque`
-- `Vec`
-- `BTreeSet`
-- `HashSet`
+- [`VecDeque`](https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html)
+- [`Vec`](https://doc.rust-lang.org/stable/alloc/vec/struct.Vec.html)
+- [`BTreeSet`](https://doc.rust-lang.org/stable/alloc/collections/btree/set/struct.BTreeSet.html)
+- [`HashSet`](https://doc.rust-lang.org/stable/std/collections/hash/set/struct.HashSet.html)
 
 But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Seq0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq0.html) and [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html).
 
 **Tips:**
 
-- For a sequence of 0 or more elements can such as `Vec<T>`, implement both [`Seq0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq0.html) and [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html)
+- For a sequence of 0 or more elements can such as [`Vec<T>`](https://doc.rust-lang.org/stable/alloc/vec/struct.Vec.html), implement both [`Seq0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq0.html) and [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html)
 - If your sequence is non-empty like `NonEmpty<Vec<T>>`, implement just [`Seq1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Seq1Plus.html) - then `seq![]` will be a compile error
 
 ### [`map! {}`](https://docs.rs/collection_macro/latest/collection_macro/macro.map.html)
 
-Takes a list of `key => value` pairs, and creates a map like [`HashMap<K, V>`] or [`BTreeMap<K, V>`]:
+Takes a list of `key => value` pairs, and creates a map like [`HashMap<K, V>`](https://doc.rust-lang.org/stable/std/collections/hash/map/struct.HashMap.html) or [`BTreeMap<K, V>`](https://doc.rust-lang.org/stable/alloc/collections/btree/map/struct.BTreeMap.html):
 
 ```rust
 let seq: HashMap<_, _> = map! {
@@ -107,19 +107,19 @@ assert_eq!(seq, HashMap::from([('A', 0x41), ('b', 0x62), ('!', 0x21)]));
 
 **Traits:**
 
-- If your type implements [`Map0<K, V>`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map0.html), then it can be used with `map! {}` syntax
-- If your type implements [`Map1Plus<K, V>`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html), then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
+- If your type implements [`Map0<K, V>`], then it can be used with `map! {}` syntax
+- If your type implements [`Map1Plus<K, V>`], then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
 
 `map!` can be used with these standard library types by default:
 
-- [`BTreeMap`]
-- [`BTreeSet`]
+- [`BTreeMap`](https://doc.rust-lang.org/stable/alloc/collections/btree/map/struct.BTreeMap.html)
+- [`BTreeSet`](https://doc.rust-lang.org/stable/alloc/collections/btree/set/struct.BTreeSet.html)
 
-But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map0.html) and [`Map1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html).
+But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`] and [`Map1Plus`].
 
 **Tips:**
 
-- For a map of 0 or more `key => value` pairs can such as `HashMap<K, V>`, implement both [`Map0`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map0.html) and [`Map1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html)
-- If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`](https://docs.rs/collection_macro/latest/collection_macro/trait.Map1Plus.html) - then `map! {}` will be a compile error
+- For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](https://doc.rust-lang.org/stable/std/collections/hash/map/struct.HashMap.html), implement both [`Map0`] and [`Map1Plus`]
+- If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`] - then `map! {}` will be a compile error
 
 <!-- cargo-rdme end -->

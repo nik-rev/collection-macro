@@ -4,7 +4,7 @@
 //! ![msrv](https://img.shields.io/badge/msrv-1.60-blue?style=flat-square&logo=rust)
 //! [![github](https://img.shields.io/github/stars/nik-rev/collection-macro)](https://github.com/nik-rev/collection-macro)
 //!
-//! This crate provides the general-purpose [`seq![]`](crate::seq) and [`map! {}`](crate::map) macros.
+//! This crate provides the general-purpose [`seq![]`](seq) and [`map! {}`](map) macros.
 //!
 //! ```toml
 //! [dependencies]
@@ -19,9 +19,9 @@
 //!
 //! The real power of these macros lies in the fact that work with absolutely any collection type, even collections from other crates.
 //!
-//! ## [`seq![]`](crate::seq)
+//! ## [`seq![]`](seq)
 //!
-//! Takes a list of expressions, and creates a sequence like [`Vec<T>`](::std::vec::Vec) or [`HashSet<T>`](::std::collections::HashSet):
+//! Takes a list of expressions, and creates a sequence like [`Vec<T>`](Vec) or [`HashSet<T>`](HashSet):
 //!
 //! ```rust
 //! # use collection_macro::seq;
@@ -78,21 +78,21 @@
 //!
 //! `seq!` can be used with these standard library types by default:
 //!
-//! - [`VecDeque`](::std::collections::VecDeque)
-//! - [`Vec`](::std::vec::Vec)
-//! - [`BTreeSet`](::std::collections::BTreeSet)
-//! - [`HashSet`](::std::collections::HashSet)
+//! - [`VecDeque`](VecDeque)
+//! - [`Vec`](Vec)
+//! - [`BTreeSet`](BTreeSet)
+//! - [`HashSet`](HashSet)
 //!
 //! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Seq0`](crate::Seq0) and [`Seq1Plus`](crate::Seq1Plus).
 //!
 //! **Tips:**
 //!
-//! - For a sequence of 0 or more elements can such as [`Vec<T>`](::std::vec::Vec), implement both [`Seq0`](crate::Seq0) and [`Seq1Plus`](crate::Seq1Plus)
-//! - If your sequence is non-empty like `NonEmpty<Vec<T>>`, implement just [`Seq1Plus`](crate::Seq1Plus) - then `seq![]` will be a compile error
+//! - For a sequence of 0 or more elements can such as [`Vec<T>`](Vec), implement both [`Seq0`](Seq0) and [`Seq1Plus`](Seq1Plus)
+//! - If your sequence is non-empty like `NonEmpty<Vec<T>>`, implement just [`Seq1Plus`](Seq1Plus) - then `seq![]` will be a compile error
 //!
-//! ## [`map! {}`](crate::map)
+//! ## [`map! {}`](map)
 //!
-//! Takes a list of `key => value` pairs, and creates a map like [`HashMap<K, V>`] or [`BTreeMap<K, V>`]:
+//! Takes a list of `key => value` pairs, and creates a map like [`HashMap<K, V>`](HashMap) or [`BTreeMap<K, V>`](BTreeMap):
 //!
 //! ```rust
 //! # use collection_macro::map;
@@ -107,20 +107,20 @@
 //!
 //! **Traits:**
 //!
-//! - If your type implements [`Map0<K, V>`](crate::Map0), then it can be used with `map! {}` syntax
-//! - If your type implements [`Map1Plus<K, V>`](crate::Map1Plus), then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
+//! - If your type implements [`Map0<K, V>`], then it can be used with `map! {}` syntax
+//! - If your type implements [`Map1Plus<K, V>`], then it can be used with 1+ argument to: `map! { 'A' => 0x41, 'b' => 0x62 }`
 //!
 //! `map!` can be used with these standard library types by default:
 //!
-//! - [`BTreeMap`]
-//! - [`BTreeSet`]
+//! - [`BTreeMap`](BTreeMap)
+//! - [`BTreeSet`](BTreeSet)
 //!
-//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`](crate::Map0) and [`Map1Plus`](crate::Map1Plus).
+//! But you can use it with *any* struct, even the ones from external crates by implementing the traits [`Map0`] and [`Map1Plus`].
 //!
 //! **Tips:**
 //!
-//! - For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](::std::collections::HashMap), implement both [`Map0`](crate::Map0) and [`Map1Plus`](crate::Map1Plus)
-//! - If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`](crate::Map1Plus) - then `map! {}` will be a compile error
+//! - For a map of 0 or more `key => value` pairs can such as [`HashMap<K, V>`](HashMap), implement both [`Map0`] and [`Map1Plus`]
+//! - If your map is non-empty like `NonEmpty<HashMap<K, V>>`, implement just [`Map1Plus`] - then `map! {}` will be a compile error
 
 use core::cmp::Ord;
 use core::hash::{BuildHasher, Hash};
